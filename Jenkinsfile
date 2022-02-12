@@ -1,5 +1,6 @@
 node
 {
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('')])])
     
     def mavenHome = tool name:"maven3.8.4"
     
@@ -21,6 +22,12 @@ stage('Build')
  }
  stage('upload into tomccat server')
  {
+     sshagent(['8d7d48f3-71e3-4e4b-b0c1-d0f56482dbcd']) 
+     {
+    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.233.129.145:/opt/apache-tomcat-9.0.58/webapps/"
+
+
+      }
      
  }
 }
