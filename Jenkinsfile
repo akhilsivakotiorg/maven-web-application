@@ -25,9 +25,9 @@ stage('Build')
  }
  stage('upload into tomccat server')
  {
-     sshagent(['8d7d48f3-71e3-4e4b-b0c1-d0f56482dbcd']) 
+     sshagent(['80ff57a2-6586-4a60-8de4-f52d67eb661a']) 
      {
-    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.233.129.145:/opt/apache-tomcat-9.0.58/webapps/"
+    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.2.141.186:/opt/apache-tomcat-9.0.58/webapps/"
 
 
       }
